@@ -23,8 +23,6 @@ const Home = () => {
         <div>
             { error && <div>{error}</div> }
             { isPending && <div>Loading...</div> }
-
-            { console.log('bloggy', blogs) }
             <BlogList blogs={blogs} title="All Blogs" />
             <hr/><br/>
             <Link to='/newblog'>Post New Blog</Link>
