@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
-// import { useQuery } from 'react-query';
+import { gql, useQuery, useMutation } from '@apollo/client';
 
 const GET_BLOG_POST = gql`
     query getBlogPost($id: ID!) {
@@ -12,19 +11,26 @@ const GET_BLOG_POST = gql`
         }
     }
 `;
+
+const REMOVE_BLOG = gql`
+    mutation removeBlog ($id: ID!) {
+        deletePost(id: $id) {
+            affected_rows
+        }
+    }
+`;
  
 const BlogItem = () => {
     const { id } = useParams();
-    // const { isLoading, error, data: blog, } =  useQuery(['blogItem', id], () => fetch('http://localhost:4000/blogs/' + id).then(res => res.json()) )
     const { isLoading, error, data: blog } =  useQuery(GET_BLOG_POST, { variables: { id: id } })
+    const [blogRemove] = useMutation(REMOVE_BLOG);
     const navigate = useNavigate();
     
     const handleClick = () => {
-        fetch('http://localhost:4000/blogs/'+ blog._id, {
-            method: 'DELETE'
-        }).then(() => {
-            navigate('/');
-        })
+        blogRemove({
+            variables: { id: id },
+        });
+        navigate('/');
     }
  
     return (
