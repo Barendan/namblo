@@ -15,7 +15,7 @@ const GET_BLOG_POST = gql`
 const REMOVE_BLOG = gql`
     mutation removeBlog ($id: ID!) {
         deletePost(id: $id) {
-            affected_rows
+            _id
         }
     }
 `;
@@ -23,12 +23,12 @@ const REMOVE_BLOG = gql`
 const BlogItem = () => {
     const { id } = useParams();
     const { isLoading, error, data: blog } =  useQuery(GET_BLOG_POST, { variables: { id: id } })
-    const [blogRemove] = useMutation(REMOVE_BLOG);
+    const [blogRemove] = useMutation(REMOVE_BLOG,{ refetchQueries: ['GetBlogPosts'] });
     const navigate = useNavigate();
     
     const handleClick = () => {
         blogRemove({
-            variables: { id: id },
+            variables: { id },
         });
         navigate('/');
     }

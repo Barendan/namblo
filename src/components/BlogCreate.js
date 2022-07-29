@@ -16,26 +16,12 @@ const BlogCreate = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('Barenboim');
-    const [isPending, setIsPending] = useState(false);
-    const [blogCreate, { data, loading, error }] = useMutation(CREATE_BLOG_POST);
+    const [blogCreate, { data, loading, error }] = useMutation(CREATE_BLOG_POST, { refetchQueries: ['GetBlogPosts'] });
     const navigate = useNavigate();
     
     const handleSubmit = (e) => {
         e.preventDefault();
         const blog = { title, body, author };
-        
-        setIsPending(true);
-        
-        // fetch('http://localhost:4000/blogs', {
-        //     method: 'POST',
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify(blog)
-        //     }).then(() => {
-        //     setIsPending(false);
-        // })
-
-        console.log('what we got?', blog)
-        console.log('bloggy', error)
         
         blogCreate({
             variables: { 
@@ -45,7 +31,7 @@ const BlogCreate = () => {
             }
         });
         
-        // navigate('/');
+        navigate('/');
     }
     
     return (
@@ -76,8 +62,8 @@ const BlogCreate = () => {
                     <option value="Kennedy">Kennedy</option>
                     <option value="Simone">Simone</option>
                 </select>
-                {!isPending && <button>Add Blog</button>}
-                {isPending && <button disabled>Adding Blog</button>}
+                {!loading && <button>Add Blog</button>}
+                {loading && <button disabled>Adding Blog</button>}
             </form>
         </div>
     );
