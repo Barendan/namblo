@@ -62,6 +62,7 @@ const BlogCreate = () => {
                     <option value="Kennedy">Kennedy</option>
                     <option value="Simone">Simone</option>
                 </select>
+                <button onClick={() => navigate('/')}>Back</button>
                 {!loading && <button>Add Blog</button>}
                 {loading && <button disabled>Adding Blog</button>}
             </form>
