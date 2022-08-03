@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gql, useMutation } from '@apollo/client';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react';
 
 const CREATE_BLOG_POST = gql`
     mutation CreatePost($title: String!, $body: String!, $author: String) {
@@ -39,7 +39,7 @@ const BlogCreate = () => {
         <div className="create">
             {/* { isLoading && <div>Loading...</div> } */}
 
-            <h2>Add a New Blog</h2>
+            <h2>Add a New Post</h2>
             <Form onSubmit={handleSubmit}>
 
                 <Form.Field required>
@@ -72,8 +72,8 @@ const BlogCreate = () => {
                 />
 
                 <Button onClick={() => navigate('/')}>Back</Button>
-                { !loading && <Button type="submit">Add Blog</Button>}
-                { loading && <Button disabled type="submit">Adding Blog</Button>}
+                { !loading && <Button type="submit">Add Post</Button>}
+                { loading && <Button disabled type="submit">Adding Post</Button>}
             </Form>
 
         </div>

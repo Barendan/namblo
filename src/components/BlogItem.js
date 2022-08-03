@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { gql, useQuery, useMutation } from '@apollo/client';
+import { Button, Card, Form } from 'semantic-ui-react';
 
 const GET_BLOG_POST = gql`
     query getBlogPost($id: ID!) {
@@ -72,7 +73,7 @@ const BlogItem = () => {
         );
         
         setEditActive(false);
-        // navigate('/');
+        navigate('/');
     }
  
     return (
@@ -82,44 +83,55 @@ const BlogItem = () => {
 
             { editActive ? (
                 <div>
-                    <h2>Add a New Blog</h2>
-                    <form onSubmit={handleSubmit}>
-                        <label>Blog Title</label>
-                        <input
-                            type="text"
-                            required
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                        <label>Blog Body:</label>
-                        <textarea
-                            required
+                    <h1>Edit your post</h1>
+                    <Form onSubmit={handleSubmit}>
+
+                        <Form.Field>
+                            <label>Post Title</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder='Enter a title'
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </Form.Field>
+
+                        <Form.Field>
+                            <label>Author Name</label>
+                            <input
+                                type="text"
+                                placeholder='Enter your name' 
+                                value={author}
+                                onChange={(e) => setAuthor(e.target.value)}
+                            />
+                        </Form.Field>
+
+                        <Form.TextArea 
+                            label='Post Content' 
+                            placeholder='Write your heart out...' 
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
                         />
-                        <label>Blog author:</label>
-                        <select
-                            value={author}
-                            onChange={(e) => setAuthor(e.target.value)}
-                        > 
-                            <option value="Barenboim">Barenboim</option>
-                            <option value="Kennedy">Kennedy</option>
-                            <option value="Simone">Simone</option>
-                        </select>
-                        {!loading && <button>Update Blog</button>}
-                        {loading && <button disabled>Updating Blog</button>}
-                    </form>
+
+                        <Button onClick={() => navigate(-1)}>Back</Button>
+                        { !loading && <Button type="submit">Update Post</Button>}
+                        { loading && <Button disabled type="submit">Updating Post</Button>}
+                    </Form>
                 </div>
             ) :
             blog?.getPost && (
-                <article >
-                    <h2>{blog.getPost.title}</h2>
-                    <p>Written by {blog.getPost.author}</p>
-                    <div>{blog.getPost.body}</div>
-                    <button onClick={() => navigate('/')}>Back</button>
-                    <button onClick={() => handleUpdate()}>Edit</button>
-                    <button onClick={handleClick}>Delete</button>
-                </article>
+                <div>
+                    <Card 
+                        // fluid
+                        header={blog.getPost.title}
+                        meta={`written by ${blog.getPost.author}`}
+                        description={blog.getPost.body}
+                    />
+                    <Button onClick={() => navigate('/')}>Back</Button>
+                    <Button onClick={() => handleUpdate()}>Edit</Button>
+                    <Button onClick={handleClick}>Delete</Button>
+                </div>
             )}
 
         </div>

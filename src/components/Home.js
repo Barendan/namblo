@@ -1,6 +1,7 @@
 // import useFetch from './useFetch';
-import { Link } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
+import { Button } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 import BlogList from './BlogList.js';
 
@@ -18,6 +19,7 @@ const GET_BLOG_POSTS = gql`
 const Home = () => {
   // const { data: blogs, isPending, error } = useFetch('http://localhost:4000/blogs');
   const { data: blogs, isPending, error } = useQuery(GET_BLOG_POSTS);
+  const navigate = useNavigate();
 
   return (
     <div className="Home">
@@ -27,7 +29,7 @@ const Home = () => {
         <div>
           <BlogList blogs={blogs} />
           <hr/><br/>
-          <Link to='/newblog'>Post New Blog</Link>
+          <Button onClick={() => navigate('/newblog') }>Post New Blog</Button>
         </div>
       )}
     </div>
