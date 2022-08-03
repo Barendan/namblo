@@ -6,11 +6,13 @@ import BlogItem from './components/BlogItem';
 import BlogCreate from './components/BlogCreate';
 // import NotFound from './NotFound';
 
+
 function App() {
   const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+
         <div className="App">
           {/* <Navbar/> */}
           <div className="content">
@@ -22,6 +24,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        
       </Router>
     </QueryClientProvider>
   );
