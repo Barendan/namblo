@@ -73,7 +73,6 @@ const BlogItem = () => {
         );
         
         setEditActive(false);
-        navigate('/');
     }
  
     return (
@@ -114,7 +113,7 @@ const BlogItem = () => {
                             onChange={(e) => setBody(e.target.value)}
                         />
 
-                        <Button onClick={() => navigate(-1)}>Back</Button>
+                        <Button onClick={() => setEditActive(false)}>Back</Button>
                         { !loading && <Button type="submit">Update Post</Button>}
                         { loading && <Button disabled type="submit">Updating Post</Button>}
                     </Form>
