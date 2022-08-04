@@ -1,14 +1,37 @@
-.App {
-  padding: 20px;
-  /* text-align: center; */
+@font-face {
+  font-family: KGHappy;
+  src: url("./data/hinted-KGHAPPY.woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
-.Home {
-  /* flex: 1; */
+@font-face {
+  font-family: KGHappySolid;
+  src: url("./data/hinted-KGHAPPYSolid.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('./data/phobackground.jpg');
+  background-size: 100%;
+  padding: 20px;
+}
+
+.main-header {
+  font-size: 70px;
+  font-family: KGHappy;
+  line-height: 80px;
+  margin-bottom: 30px;
+  /* background-color: 'white'; */
+  /* width: auto; */
 }
 
 .blog-list {
-  align-content: center;
-  width: 70%;
+  width: 50%;
   padding: 30px;
+  font-family: KGHappySolid;
+  margin-bottom: 50px;
 }

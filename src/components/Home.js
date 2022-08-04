@@ -23,13 +23,18 @@ const Home = () => {
 
   return (
     <div className="Home">
-      <h1> Welcome to the Blog!</h1>
+      <div className="main-header"> Nifty Shifty Blog!</div>
       { isPending && <div> Loading... </div> }
       { blogs && (
         <div>
           <BlogList blogs={blogs} />
           <hr/><br/>
-          <Button onClick={() => navigate('/newblog') }>Post New Blog</Button>
+          <Button 
+            primary
+            // color="orange"
+            size="huge" 
+            onClick={() => navigate('/newblog') }
+          > Post New Blog </Button>
         </div>
       )}
     </div>
