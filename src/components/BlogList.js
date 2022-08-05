@@ -1,7 +1,10 @@
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 
-const BlogList = ({ blogs }) => (
+const BlogList = ({ blogs }) => {
+  const navigate = useNavigate()
+
+  return (
   <div className="blog-list">
     <Card.Group>
       { blogs?.getPosts.map(blog => (
@@ -16,7 +19,8 @@ const BlogList = ({ blogs }) => (
         <Card
           fluid
           key={blog._id}
-          href={`/blogs/${blog._id}`}
+          // href={`/blogs/${blog._id}`}
+          onClick={() => navigate(`/blogs/${blog._id}`) }
         >
           <Card.Content>
             <Card.Header className="card-header">{blog.title}</Card.Header>
@@ -27,6 +31,6 @@ const BlogList = ({ blogs }) => (
       ))}
     </Card.Group>
   </div>
-);
+)};
 
 export default BlogList;
