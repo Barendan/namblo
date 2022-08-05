@@ -34,7 +34,7 @@ const Home = () => {
             // color="orange"
             size="huge" 
             onClick={() => navigate('/newblog') }
-          > Post New Blog </Button>
+          >Post New Blog </Button>
         </div>
       )}
     </div>

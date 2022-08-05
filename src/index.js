@@ -7,10 +7,9 @@ import './App.css';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: 'https://namblo-server.herokuapp.com/',
   cache: new InMemoryCache()
 })
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

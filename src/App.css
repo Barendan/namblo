@@ -36,9 +36,26 @@
   /* line-height: 40px; */
 }
 
+.title-header {
+  /* font-size: 40px !important; */
+  /* font-family: KGHappy !important; */
+}
+
 .blog-list {
   width: 50%;
   padding: 30px;
   font-family: KGHappySolid;
   margin-bottom: 50px;
 }
+
+.form-container {
+  background-color: white;
+  width: 50%;
+  /* height: 30%; */
+  padding: 30px;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  font-family: KGHappySolid;
+}
+
+

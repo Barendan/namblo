@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { gql, useQuery, useMutation } from '@apollo/client';
-import { Button, Card, Form } from 'semantic-ui-react';
+import { Container, Button, Card, Form } from 'semantic-ui-react';
 
 const GET_BLOG_POST = gql`
     query getBlogPost($id: ID!) {
@@ -82,41 +82,44 @@ const BlogItem = () => {
 
             { editActive ? (
                 <div>
-                    <h1>Edit your post</h1>
-                    <Form onSubmit={handleSubmit}>
+                    <p className="main-header">Edit your post</p>
+                    <div className="form-container">
+                        <Form onSubmit={handleSubmit}>
 
-                        <Form.Field>
-                            <label>Post Title</label>
-                            <input
-                                type="text"
-                                required
-                                placeholder='Enter a title'
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </Form.Field>
+                            <Form.Field>
+                                <label>Post Title</label>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder='Enter a title'
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    />
+                            </Form.Field>
 
-                        <Form.Field>
-                            <label>Author Name</label>
-                            <input
-                                type="text"
-                                placeholder='Enter your name' 
-                                value={author}
-                                onChange={(e) => setAuthor(e.target.value)}
-                            />
-                        </Form.Field>
+                            <Form.Field>
+                                <label>Author Name</label>
+                                <input
+                                    type="text"
+                                    placeholder='Enter your name' 
+                                    value={author}
+                                    onChange={(e) => setAuthor(e.target.value)}
+                                    />
+                            </Form.Field>
 
-                        <Form.TextArea 
-                            label='Post Content' 
-                            placeholder='Write your heart out...' 
-                            value={body}
-                            onChange={(e) => setBody(e.target.value)}
-                        />
+                            <Form.TextArea 
+                                label='Post Content' 
+                                placeholder='Write your heart out...' 
+                                value={body}
+                                onChange={(e) => setBody(e.target.value)}
+                                />
 
-                        <Button onClick={() => setEditActive(false)}>Back</Button>
-                        { !loading && <Button type="submit">Update Post</Button>}
-                        { loading && <Button disabled type="submit">Updating Post</Button>}
-                    </Form>
+                            <Button size="large" onClick={() => setEditActive(false)}
+                            >Back</Button>
+                            { !loading && <Button color="green" size="large" type="submit">Update Post</Button>}
+                            { loading && <Button disabled color="green" size="large" type="submit">Updating Post</Button>}
+                        </Form>
+                    </div>
                 </div>
             ) :
             blog?.getPost && (
@@ -127,9 +130,20 @@ const BlogItem = () => {
                         meta={`written by ${blog.getPost.author}`}
                         description={blog.getPost.body}
                     />
-                    <Button onClick={() => navigate('/')}>Back</Button>
-                    <Button onClick={() => handleUpdate()}>Edit</Button>
-                    <Button onClick={handleClick}>Delete</Button>
+                    <Button 
+                        size="large"
+                        onClick={() => navigate('/')}
+                    >Back</Button>
+                    <Button 
+                        size="large"
+                        color="green"
+                        onClick={() => handleUpdate()}
+                    >Edit</Button>
+                    <Button 
+                        size="large"
+                        color="red"
+                        onClick={handleClick}
+                    >Delete</Button>
                 </div>
             )}
 

@@ -39,42 +39,44 @@ const BlogCreate = () => {
         <div className="create">
             {/* { isLoading && <div>Loading...</div> } */}
 
-            <h2>Add a New Post</h2>
-            <Form onSubmit={handleSubmit}>
+            <p className="main-header">Add a New Post</p>
+            <div className="form-container">
+                <Form onSubmit={handleSubmit}>
 
-                <Form.Field required>
-                    <label>Post Title</label>
-                    <input
-                        type="text"
+                    <Form.Field required>
+                        <label>Post Title</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder='Enter a title'
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            />
+                    </Form.Field>
+
+                    <Form.Field>
+                        <label>Author Name</label>
+                        <input
+                            type="text"
+                            placeholder='Enter your name' 
+                            value={author}
+                            onChange={(e) => setAuthor(e.target.value)}
+                            />
+                    </Form.Field>
+
+                    <Form.TextArea 
                         required
-                        placeholder='Enter a title'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                </Form.Field>
+                        label='Post Content' 
+                        placeholder='Write your heart out...' 
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                        />
 
-                <Form.Field>
-                    <label>Author Name</label>
-                    <input
-                        type="text"
-                        placeholder='Enter your name' 
-                        value={author}
-                        onChange={(e) => setAuthor(e.target.value)}
-                    />
-                </Form.Field>
-
-                <Form.TextArea 
-                    required
-                    label='Post Content' 
-                    placeholder='Write your heart out...' 
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                />
-
-                <Button onClick={() => navigate('/')}>Back</Button>
-                { !loading && <Button type="submit">Add Post</Button>}
-                { loading && <Button disabled type="submit">Adding Post</Button>}
-            </Form>
+                    <Button size="large" onClick={() => navigate('/')}>Back</Button>
+                    { !loading && <Button size="large" color="green" type="submit">Add Post</Button>}
+                    { loading && <Button disabled size="large" color="green" type="submit">Adding Post</Button>}
+                </Form>
+            </div>
 
         </div>
     );
