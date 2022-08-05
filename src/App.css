@@ -29,6 +29,13 @@
   /* width: auto; */
 }
 
+.card-header {
+  font-size: 34px !important;
+  font-family: KGHappy !important;
+  font-weight: 300 !important;
+  /* line-height: 40px; */
+}
+
 .blog-list {
   width: 50%;
   padding: 30px;
