@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { gql, useQuery, useMutation } from '@apollo/client';
-import { Container, Button, Card, Form } from 'semantic-ui-react';
+import { Confirm, Button, Card, Form } from 'semantic-ui-react';
 
 const GET_BLOG_POST = gql`
     query getBlogPost($id: ID!) {
@@ -41,13 +41,14 @@ const BlogItem = () => {
     const [blogUpdate, { data, loading, error }] = useMutation(UPDATE_BLOG);
     
     const [editActive, setEditActive] = useState(false);
+    const [open, setOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [status, setStatus] = useState(false);
 
     const navigate = useNavigate();
     
-    const handleClick = () => {
+    const handleDelete = () => {
         blogRemove({
             variables: { id },
         });
@@ -98,10 +99,10 @@ const BlogItem = () => {
                             </Form.Field>
 
                             <Form.Field>
-                                <label>Author Name</label>
+                                <label>Status</label>
                                 <input
                                     type="text"
-                                    placeholder='Enter your name' 
+                                    placeholder='Enter the status' 
                                     value={status}
                                     onChange={(e) => setStatus(e.target.value)}
                                     />
@@ -114,10 +115,17 @@ const BlogItem = () => {
                                 onChange={(e) => setBody(e.target.value)}
                                 />
 
-                            <Button size="large" onClick={() => setEditActive(false)}
-                            >Back</Button>
-                            { !loading && <Button color="green" size="large" type="submit">Update Post</Button>}
-                            { loading && <Button disabled color="green" size="large" type="submit">Updating Post</Button>}
+                            <Button size="large" onClick={() => setEditActive(false)}>
+                                Back
+                            </Button>
+
+                            { !loading && <Button color="green" size="large" type="submit">
+                                Update Post
+                            </Button> }
+
+                            { loading && <Button disabled color="green" size="large" type="submit">
+                                Updating Post
+                            </Button> }
                         </Form>
                     </div>
                 </div>
@@ -133,17 +141,31 @@ const BlogItem = () => {
                     <Button 
                         size="large"
                         onClick={() => navigate('/')}
-                    >Back</Button>
+                    >
+                        Back
+                    </Button>
                     <Button 
                         size="large"
                         color="green"
                         onClick={() => handleUpdate()}
-                    >Edit</Button>
+                    >
+                        Edit
+                    </Button>
                     <Button 
                         size="large"
                         color="red"
-                        onClick={handleClick}
-                    >Delete</Button>
+                        onClick={() => setOpen(true)}
+                    > 
+                        Delete
+                    </Button>
+                    <Confirm
+                        open={open}
+                        content='Are you sure you want to delete this post?'
+                        cancelButton='Never mind'
+                        confirmButton="Delete it"
+                        onCancel={() => setOpen(false)}
+                        onConfirm={handleDelete}
+                    />
                 </div>
             )}
 
