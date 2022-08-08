@@ -1,39 +1,10 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { gql, useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Confirm, Button, Card, Form } from 'semantic-ui-react';
 
-const GET_BLOG_POST = gql`
-    query getBlogPost($id: ID!) {
-        getPost (id: $id) {
-            _id
-            title
-            body
-            status
-            createdAt
-        }
-    }
-`;
+import { GET_BLOG_POST, REMOVE_BLOG, UPDATE_BLOG } from '../graphql/postsResolver';
 
-const REMOVE_BLOG = gql`
-    mutation removeBlog ($id: ID!) {
-        deletePost(id: $id) {
-            _id
-        }
-    }
-`;
-
-const UPDATE_BLOG = gql`
-    mutation UpdatePost($id: ID!, $body: String, $title: String, $status: String) {
-        updatePost(id: $id, body: $body, title: $title, status: $status) {
-            _id
-            title
-            body
-            status
-        }
-    }
-`;
- 
 const BlogItem = () => {
     const { id } = useParams();
     const { isLoading, data: blog } =  useQuery(GET_BLOG_POST, { variables: { id: id } });
@@ -132,30 +103,21 @@ const BlogItem = () => {
             ) :
             blog?.getPost && (
                 <div>
+
                     <Card 
                         // fluid
-                        header={blog.getPost.title}
-                        meta={`written ${blog.getPost.createdAt}`}
+                        // header={blog.getPost.title}
+                        // meta={`written ${blog.getPost.createdAt}`}
                         description={blog.getPost.body}
                     />
-                    <Button 
-                        size="large"
-                        onClick={() => navigate('/')}
-                    >
+
+                    <Button size="large" onClick={() => navigate('/')}>
                         Back
                     </Button>
-                    <Button 
-                        size="large"
-                        color="green"
-                        onClick={() => handleUpdate()}
-                    >
+                    <Button size="large" color="green" onClick={() => handleUpdate()}>
                         Edit
                     </Button>
-                    <Button 
-                        size="large"
-                        color="red"
-                        onClick={() => setOpen(true)}
-                    > 
+                    <Button size="large" color="red" onClick={() => setOpen(true)}> 
                         Delete
                     </Button>
                     <Confirm
@@ -166,6 +128,7 @@ const BlogItem = () => {
                         onCancel={() => setOpen(false)}
                         onConfirm={handleDelete}
                     />
+
                 </div>
             )}
 

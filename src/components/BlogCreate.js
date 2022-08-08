@@ -1,24 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Button, Form } from 'semantic-ui-react';
 
-const CREATE_BLOG_POST = gql`
-    mutation CreatePost($title: String!, $body: String!, $status: Boolean!, $createdAt: String!) {
-        createPost(title: $title, body: $body, status: $status, createdAt: $createdAt) {
-            _id
-            title
-            status
-            createdAt
-        }
-    }
-`;
+import { CREATE_BLOG_POST } from '../graphql/postsResolver';
  
 const BlogCreate = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [status, setStatus] = useState(false);
-    const [postCreate, { data, loading, error }] = useMutation(CREATE_BLOG_POST, { refetchQueries: ['GetBlogPosts'] });
+    const [postCreate, { loading, error }] = useMutation(CREATE_BLOG_POST, { refetchQueries: ['GetBlogPosts'] });
     const navigate = useNavigate();
     
     const handleSubmit = (e) => {

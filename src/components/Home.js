@@ -1,21 +1,10 @@
 // import useFetch from './useFetch';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Button } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 
+import { GET_BLOG_POSTS } from '../graphql/postsResolver';
 import BlogList from './BlogList.js';
-
-const GET_BLOG_POSTS = gql`
-  query GetBlogPosts {
-    getPosts {
-        _id
-        title
-        body
-        status
-        createdAt
-    }
-  }
-`;
 
 const Home = () => {
   // const { data: blogs, isPending, error } = useFetch('http://localhost:4000/blogs');
