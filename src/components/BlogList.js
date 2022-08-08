@@ -9,10 +9,12 @@ const BlogList = ({ blogs }) => {
   const blogCopy = blogs?.getPosts.map( item => { 
     return {...item, createdAt: new Date(item.createdAt)} 
   });
+
   const sortedPosts = sort ? 
     blogCopy.sort((a, b) => Number(a.createdAt) - Number(b.createdAt))
   : blogCopy.sort((a, b) => Number(b.createdAt) - Number(a.createdAt))
-  
+
+
   if (!blogs) return (
     <div>still loading...</div>
   )
@@ -25,13 +27,12 @@ const BlogList = ({ blogs }) => {
           <Card
             fluid
             key={blog._id}
-            // href={`/blogs/${blog._id}`}
             onClick={() => navigate(`/blogs/${blog._id}`) }
           >
             <Card.Content>
               <Card.Header className="card-header">{blog.title}</Card.Header>
-              <Card.Meta>{`posted ${new Date(blog.createdAt).toLocaleString()}`}</Card.Meta>
-              <Card.Description>{blog.body}</Card.Description>
+              <Card.Meta>{new Date(blog.createdAt).toLocaleString()}</Card.Meta>
+              <Card.Description>`{blog.body.slice(0,200)}...`</Card.Description>
             </Card.Content>
           </Card>
 
