@@ -23,7 +23,7 @@ const BlogCreate = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        const createdAt = new Date();
+        const createdAt = new Date().toLocaleString();
         const blog = { title, body, status, createdAt};
         
         postCreate({

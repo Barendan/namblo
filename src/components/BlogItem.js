@@ -135,7 +135,7 @@ const BlogItem = () => {
                     <Card 
                         // fluid
                         header={blog.getPost.title}
-                        meta={`written by ${blog.getPost.author}`}
+                        meta={`written ${blog.getPost.createdAt}`}
                         description={blog.getPost.body}
                     />
                     <Button 
