@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const GET_BLOG_POSTS = gql`
-  query GetBlogPosts {
-    getPosts {
-        _id
-        title
-        body
-        status
-        createdAt
+    query GetBlogPosts {
+        getPosts {
+            _id
+            title
+            body
+            status
+            createdAt
+        }
     }
-  }
 `;
 
 export const CREATE_BLOG_POST = gql`
