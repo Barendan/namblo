@@ -4,11 +4,12 @@ import { gql, useMutation } from '@apollo/client';
 import { Button, Form } from 'semantic-ui-react';
 
 const CREATE_BLOG_POST = gql`
-    mutation CreatePost($title: String!, $body: String!, $author: String) {
-        createPost(title: $title, body: $body, author: $author) {
+    mutation CreatePost($title: String!, $body: String!, $status: Boolean!, $createdAt: String!) {
+        createPost(title: $title, body: $body, status: $status, createdAt: $createdAt) {
             _id
             title
-            author
+            status
+            createdAt
         }
     }
 `;
@@ -16,24 +17,29 @@ const CREATE_BLOG_POST = gql`
 const BlogCreate = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('Barenboim');
-    const [blogCreate, { data, loading, error }] = useMutation(CREATE_BLOG_POST, { refetchQueries: ['GetBlogPosts'] });
+    const [status, setStatus] = useState(false);
+    const [postCreate, { data, loading, error }] = useMutation(CREATE_BLOG_POST, { refetchQueries: ['GetBlogPosts'] });
     const navigate = useNavigate();
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        const blog = { title, body, author };
+        const createdAt = new Date();
+        const blog = { title, body, status, createdAt};
         
-        blogCreate({
+        postCreate({
             variables: { 
                 "title": blog.title,
                 "body": blog.body,
-                "author": blog.author
+                "status": blog.status,
+                "createdAt": blog.createdAt
             }
         });
-        
+
         navigate('/');
     }
+
+    // Best way to view graphQL errors
+    if (error) return console.log('heres error', JSON.stringify(error, null, 2))
     
     return (
         <div className="create">
@@ -55,12 +61,12 @@ const BlogCreate = () => {
                     </Form.Field>
 
                     <Form.Field>
-                        <label>Author Name</label>
+                        <label>Status</label>
                         <input
                             type="text"
-                            placeholder='Enter your name' 
-                            value={author}
-                            onChange={(e) => setAuthor(e.target.value)}
+                            placeholder='Ready o no?' 
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
                             />
                     </Form.Field>
 

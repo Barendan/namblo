@@ -9,7 +9,8 @@ const GET_BLOG_POST = gql`
             _id
             title
             body
-            author
+            status
+            createdAt
         }
     }
 `;
@@ -23,12 +24,12 @@ const REMOVE_BLOG = gql`
 `;
 
 const UPDATE_BLOG = gql`
-    mutation UpdatePost($id: ID!, $body: String, $title: String, $author: String) {
-        updatePost(id: $id, body: $body, title: $title, author: $author) {
-        _id
-        title
-        body
-        author
+    mutation UpdatePost($id: ID!, $body: String, $title: String, $status: String) {
+        updatePost(id: $id, body: $body, title: $title, status: $status) {
+            _id
+            title
+            body
+            status
         }
     }
 `;
@@ -42,7 +43,7 @@ const BlogItem = () => {
     const [editActive, setEditActive] = useState(false);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('Barenboim');
+    const [status, setStatus] = useState(false);
 
     const navigate = useNavigate();
     
@@ -57,18 +58,18 @@ const BlogItem = () => {
         setEditActive(true);
         setTitle(blog?.getPost.title)
         setBody(blog?.getPost.body)
-        setAuthor(blog?.getPost.author)
+        setStatus(blog?.getPost.status)
     }
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        const blog = { title, body, author };
+        const blog = { title, body, status };
         
         blogUpdate(
             {variables: { id,
                 "title": blog.title,
                 "body": blog.body,
-                "author": blog.author
+                "status": blog.status
             }}
         );
         
@@ -78,7 +79,6 @@ const BlogItem = () => {
     return (
         <div className="blog-details">
             {isLoading && <div>Loading...</div>}
-            {/* {console.log('show blog', blog?.getPost)} */}
 
             { editActive ? (
                 <div>
@@ -102,8 +102,8 @@ const BlogItem = () => {
                                 <input
                                     type="text"
                                     placeholder='Enter your name' 
-                                    value={author}
-                                    onChange={(e) => setAuthor(e.target.value)}
+                                    value={status}
+                                    onChange={(e) => setStatus(e.target.value)}
                                     />
                             </Form.Field>
 

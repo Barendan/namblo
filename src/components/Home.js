@@ -11,7 +11,8 @@ const GET_BLOG_POSTS = gql`
         _id
         title
         body
-        author
+        status
+        createdAt
     }
   }
 `;
