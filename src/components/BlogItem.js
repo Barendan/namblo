@@ -69,14 +69,14 @@ const BlogItem = () => {
                                     />
                             </Form.Field>
 
-                            <Form.Field>
-                                <label>Status</label>
-                                <input
-                                    type="text"
-                                    placeholder='Enter the status' 
-                                    value={status}
-                                    onChange={(e) => setStatus(e.target.value)}
-                                    />
+                            <Form.Field 
+                                label='Status' 
+                                control='select'
+                                defaultValue={status}
+                                onChange={(e) => setStatus(!!e.target.value)}
+                            >
+                                <option value=''>Draft</option>
+                                <option value='true'>Publish</option>
                             </Form.Field>
 
                             <Form.TextArea 
