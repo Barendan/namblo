@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { Confirm, Button, Card, Form } from 'semantic-ui-react';
+import { Container, TextArea, Confirm, Button, Card, Form } from 'semantic-ui-react';
 
 import { GET_BLOG_POST, REMOVE_BLOG, UPDATE_BLOG } from '../graphql/postsResolver';
 
@@ -103,13 +103,16 @@ const BlogItem = () => {
             ) :
             blog?.getPost && (
                 <div>
+                    
+                    <div className="main-header">Nifty Shifty Blog!</div>
 
-                    <Card 
-                        // fluid
-                        // header={blog.getPost.title}
-                        // meta={`written ${blog.getPost.createdAt}`}
-                        description={blog.getPost.body}
-                    />
+                    <Container text className="post-container">
+                        <h1 className="card-header">{blog.getPost.title}</h1>
+                        <i>{blog.getPost.createdAt}</i>
+                        
+                        {/* <p>{blog.getPost.body}</p> */}
+                        <TextArea value={blog.getPost.body} />
+                    </Container>
 
                     <Button size="large" onClick={() => navigate('/')}>
                         Back

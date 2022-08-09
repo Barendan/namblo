@@ -61,7 +61,7 @@ const BlogCreate = () => {
                             />
                     </Form.Field>
 
-                    <Form.TextArea 
+                    <Form.TextArea
                         required
                         label='Post Content' 
                         placeholder='Write your heart out...' 

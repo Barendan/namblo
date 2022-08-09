@@ -29,10 +29,10 @@ const BlogList = ({ blogs }) => {
             key={blog._id}
             onClick={() => navigate(`/blogs/${blog._id}`) }
           >
-            <Card.Content>
+            <Card.Content className="card-content">
               <Card.Header className="card-header">{blog.title}</Card.Header>
               <Card.Meta>{new Date(blog.createdAt).toLocaleString()}</Card.Meta>
-              <Card.Description>`{blog.body.slice(0,200)}...`</Card.Description>
+              <Card.Description className="card-body">`{blog.body.slice(0,200)}...`</Card.Description>
             </Card.Content>
           </Card>
 
