@@ -44,7 +44,7 @@ export const REMOVE_BLOG = gql`
 `;
 
 export const UPDATE_BLOG = gql`
-    mutation UpdatePost($id: ID!, $body: String, $title: String, $status: String) {
+    mutation UpdatePost($id: ID!, $body: String, $title: String, $status: Boolean) {
         updatePost(id: $id, body: $body, title: $title, status: $status) {
             _id
             title

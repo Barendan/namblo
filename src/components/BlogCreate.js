@@ -48,17 +48,16 @@ const BlogCreate = () => {
                             placeholder='Enter a title'
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            />
+                        />
                     </Form.Field>
 
-                    <Form.Field>
-                        <label>Status</label>
-                        <input
-                            type="text"
-                            placeholder='Ready o no?' 
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}
-                            />
+                    <Form.Field 
+                        label='Status' 
+                        control='select' 
+                        onChange={(e) => setStatus(!!e.target.value)}
+                    >
+                        <option value=''>Draft</option>
+                        <option value='true'>Publish</option>
                     </Form.Field>
 
                     <Form.TextArea

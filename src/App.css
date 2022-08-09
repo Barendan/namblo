@@ -17,6 +17,7 @@
   background-image: url('./data/phobackground.jpg');
   background-size: 100%;
   padding: 20px;
+  overflow: scroll;
 }
 
 .App {
@@ -77,9 +78,14 @@
 }
 
 textarea {
-  height: 280px !important;
+  min-height: 300px !important;
   width: 100% !important;
 }
+
 .container textarea {
   border: 0 !important;
+}
+
+.container textarea:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px !important;
 }
