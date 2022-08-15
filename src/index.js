@@ -12,6 +12,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+
+
 const httpLink = createHttpLink({
   uri: process.env.NODE_ENV !== 'production'
   ? 'http://localhost:4000'
@@ -33,7 +35,7 @@ const authLink = setContext((_, {headers}) => {
 
 const client = new ApolloClient({
   // uri: 'https://namblo-server.herokuapp.com/',
-  uri: 'http://localhost:4000/',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 })
 
