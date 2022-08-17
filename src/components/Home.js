@@ -1,6 +1,6 @@
 // import useFetch from './useFetch';
 import { useQuery, useMutation } from '@apollo/client';
-import { Button } from 'semantic-ui-react';
+import { Container, Button, Form, Input, Message } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 
 import { GET_BLOG_POSTS } from '../graphql/postsResolver';
@@ -8,8 +8,8 @@ import BlogList from './BlogList.js';
 
 
 import { useContext, useState } from 'react';
-import { authContext } from '../context/authContext';
-import { useForm } from '../utility/hooks';
+import { AuthContext } from '../context/authContext';
+import { useForm } from '../utilities/hooks';
 
 import { gql } from 'graphql-tag';
 
@@ -34,8 +34,19 @@ const Home = () => {
   const navigate = useNavigate();
   const [ errors, setErrors ] = useState([]);
 
+  function registerUserCallback() {
+    console.log('callback hit')
+  }
 
-  const context = useContext(authContext);
+  const { onChange, onSubmit, values } = useForm(registerUserCallback, {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
+
+
+  const context = useContext(AuthContext);
   const [ registerUser, { loading }] = useMutation(REGISTER_USER, {
     update(proxy, { data: { registerUser: userData } }) {
       context.login(userData);
@@ -43,27 +54,69 @@ const Home = () => {
     },
     onError({ graphQLErrors }) {
       setErrors(graphQLErrors);
-    }
+    },
+    variables: { registerInput: values }
   })
 
 
   return (
-    <div className="Home">
-      <div className="main-header"> Nifty Shifty Blog!</div>
-      { isPending && <div> Loading... </div> }
-      { blogs && (
-        <div>
-          <BlogList blogs={blogs} />
-          <hr/><br/>
-          <Button 
-            primary
-            // color="orange"
-            size="huge" 
-            onClick={() => navigate('/newblog') }
-          >Post New Blog </Button>
-        </div>
-      )}
-    </div>
+
+    // <div className="Home">
+    //   <div className="main-header"> Nifty Shifty Blog!</div>
+    //   { isPending && <div> Loading... </div> }
+    //   { blogs && (
+    //     <div>
+    //       <BlogList blogs={blogs} />
+    //       <hr/><br/>
+    //       <Button 
+    //         primary
+    //         // color="orange"
+    //         size="huge" 
+    //         onClick={() => navigate('/newblog') }
+    //       >Post New Blog </Button>
+    //     </div>
+    //   )}
+    // </div>
+
+    <Container>
+      <Form onSubmit={() => console.log('form submitted')} >
+        <Form.Field
+          control={Input}
+          label="Username"
+          name="username"
+          onChange={onChange}
+          />
+        <Form.Field
+          control={Input}
+          label="Email"
+          name="email"
+          onChange={onChange}
+          />
+        <Form.Field
+          control={Input}
+          label="Password"
+          name="password"
+          onChange={onChange}
+          />
+        <Form.Field
+          control={Input}
+          label="Confirm password"
+          name="confirmPassword"
+          onChange={onChange}
+          />
+        { errors.map( function(error) {
+          return (
+            <Message negative>
+              { error.message }
+            </Message>
+            )
+          })}
+        <Button onClick={onSubmit}>
+          Register
+        </Button>
+      </Form>
+    </Container>
+
   )
 }
 
