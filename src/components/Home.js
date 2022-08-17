@@ -35,7 +35,8 @@ const Home = () => {
   const [ errors, setErrors ] = useState([]);
 
   function registerUserCallback() {
-    console.log('callback hit')
+    // console.log('callback hit');
+    registerUser();
   }
 
   const { onChange, onSubmit, values } = useForm(registerUserCallback, {
@@ -104,9 +105,9 @@ const Home = () => {
           name="confirmPassword"
           onChange={onChange}
           />
-        { errors.map( function(error) {
+        { errors.map( function(error, i) {
           return (
-            <Message negative>
+            <Message key={i} negative>
               { error.message }
             </Message>
             )
