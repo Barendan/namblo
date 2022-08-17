@@ -88,17 +88,18 @@ const BlogItem = () => {
                                 placeholder='Write your heart out...' 
                                 value={body}
                                 onChange={(e) => setBody(e.target.value)}
-                                />
+                            />
 
-                            <Button size="large" onClick={() => setEditActive(false)}>
+
+                            <Button size="huge" onClick={() => setEditActive(false)}>
                                 Back
                             </Button>
 
-                            { !loading && <Button color="green" size="large" type="submit">
+                            { !loading && <Button color="green" size="huge" type="submit">
                                 Update Post
                             </Button> }
 
-                            { loading && <Button disabled color="green" size="large" type="submit">
+                            { loading && <Button disabled color="green" size="huge" type="submit">
                                 Updating Post
                             </Button> }
                         </Form>
@@ -116,19 +117,22 @@ const BlogItem = () => {
                         <TextArea value={blog.getPost.body} />
                     </Container>
 
-                    <Button size="large" onClick={() => navigate('/')}>
-                        Back
-                    </Button>
-
-                    { user && (
+                    { user ? (
                         <div>
-                            <Button size="large" color="green" onClick={() => handleUpdate()}>
+                            <Button size="huge" onClick={() => navigate('/')}>
+                                Back
+                            </Button>
+                            <Button size="huge" color="green" onClick={() => handleUpdate()}>
                                 Edit
                             </Button>
-                            <Button size="large" color="red" onClick={() => setOpen(true)}> 
+                            <Button size="huge" color="red" onClick={() => setOpen(true)}> 
                                 Delete
                             </Button>
                         </div>
+                    ) : (
+                        <Button size="huge" onClick={() => navigate('/')}>
+                            Back
+                        </Button>
                     )}
 
                     <Confirm

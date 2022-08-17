@@ -36,9 +36,14 @@ const Home = () => {
         </div>
       )}
 
-      { blogs && user && (
+      { blogs && user ? (
         <div>
           <hr/><br/>
+          <Button
+            color="red"
+            size="huge"
+            onClick={onLogout}
+          > Logout </Button>
           <Button 
             primary
             // color="orange"
@@ -46,18 +51,14 @@ const Home = () => {
             onClick={() => navigate('/newblog') }
           >Post New Blog </Button>
         </div>
+      ) : (
+        <Button
+          color="green"
+          size="huge"
+          onClick={() => setShowLogin(true)}
+        > Login </Button>
       )}
 
-      <Button
-        color="red"
-        size="huge"
-        onClick={onLogout}
-      > Logout </Button>
-      <Button
-        color="green"
-        size="huge"
-        onClick={() => setShowLogin(true)}
-      > Login </Button>
 
       <UserLogin show={showLogin} onClose={() => setShowLogin(false)} />
     </div>
