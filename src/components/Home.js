@@ -15,7 +15,6 @@ const Home = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-
   const [ showLogin, setShowLogin ] = useState(false);
 
   const onLogout = () => {
@@ -29,12 +28,14 @@ const Home = () => {
     <div className="Home">
       <div className="main-header"> Nifty Shifty Blog!</div>
       { isPending && <div> Loading... </div> }
+
       { blogs && (
         <div>
           <BlogList blogs={blogs} />
           
         </div>
       )}
+
       { blogs && user && (
         <div>
           <hr/><br/>
@@ -47,19 +48,16 @@ const Home = () => {
         </div>
       )}
 
-
-
-      <Button
-        color="green"
-        size="huge"
-        onClick={() => setShowLogin(true)}
-      >Login</Button>
       <Button
         color="red"
         size="huge"
         onClick={onLogout}
-      >Logout</Button>
-      {/* {console.log('user here?', user)} */}
+      > Logout </Button>
+      <Button
+        color="green"
+        size="huge"
+        onClick={() => setShowLogin(true)}
+      > Login </Button>
 
       <UserLogin show={showLogin} onClose={() => setShowLogin(false)} />
     </div>
