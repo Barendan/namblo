@@ -1,78 +1,78 @@
 import { useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
-import { Container, Button, Form, Input, Message } from 'semantic-ui-react';
+import { Container, Button, Form, Input, Message, Modal } from 'semantic-ui-react';
 import { LOGIN_USER } from '../graphql/usersResolver';
 import { AuthContext } from '../context/authContext';
 import { useForm } from '../utilities/hooks';
 
 
-const UserLogin = () => {
+const UserLogin = ({ show, onClose }) => {
+    const context = useContext(AuthContext);
     const [ errors, setErrors ] = useState([]);
-    const navigate = useNavigate();
     
     function loginUserCallback() {
         loginUser();
     }
     
-    const { onChange, onSubmit, values } = useForm(registerUserCallback, {
-      username: '',
+    const { onChange, onSubmit, values } = useForm(loginUserCallback, {
       email: '',
       password: '',
-      confirmPassword: '',
     })
     
-    const context = useContext(AuthContext);
-    const [ loginUser, { loading }] = useMutation(LOGIN_USER, {
+    const [ loginUser, { loading } ] = useMutation(LOGIN_USER, {
         update(proxy, { data: { loginUser: userData } }) {
           context.login(userData);
-          // navigate('/');
+          setErrors([]);
+          onClose();
         },
         onError({ graphQLErrors }) {
           setErrors(graphQLErrors);
         },
-        variables: { registerInput: values }
+        variables: { loginInput: values }
     })
 
+    const closeErrors = () => {
+        setErrors([]);
+        onClose();
+    }
+
     return (
-        <Container>
-            <Form onSubmit={() => console.log('form submitted')} >
+        <Modal
+            size="tiny"
+            open={show}
+            onClose={onClose}
+        >
+            <Form>
                 <Form.Field
-                control={Input}
-                label="Username"
-                name="username"
-                onChange={onChange}
+                    control={Input}
+                    label="Email"
+                    name="email"
+                    onChange={onChange}
                 />
                 <Form.Field
-                control={Input}
-                label="Email"
-                name="email"
-                onChange={onChange}
+                    control={Input}
+                    label="Password"
+                    name="password"
+                    onChange={onChange}
                 />
-                <Form.Field
-                control={Input}
-                label="Password"
-                name="password"
-                onChange={onChange}
-                />
-                <Form.Field
-                control={Input}
-                label="Confirm password"
-                name="confirmPassword"
-                onChange={onChange}
-                />
+
                 { errors.map( function(error, i) {
-                return (
-                    <Message key={i} negative>
-                    { error.message }
-                    </Message>
+                    return (
+                        <Message key={i} negative>
+                            { error.message }
+                        </Message>
                     )
                 })}
-                <Button onClick={onSubmit}>
-                Register
+
+                <Button color="green" onClick={onSubmit}>
+                    Login
                 </Button>
+                <Button onClick={closeErrors}>
+                    Back
+                </Button>
+
             </Form>
-        </Container>
+        </Modal>
     )
 }
 
