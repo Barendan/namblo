@@ -114,7 +114,7 @@ const BlogItem = () => {
                         <h1 className="card-header">{blog.getPost.title}</h1>
                         <i>{blog.getPost.createdAt}</i>
                         
-                        <TextArea value={blog.getPost.body} />
+                        <TextArea className="post-body" value={blog.getPost.body} />
                     </Container>
 
                     { user ? (
