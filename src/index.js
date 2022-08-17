@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import 'semantic-ui-css/semantic.min.css';
-import './App.css';
-
 import { 
   ApolloClient, 
   ApolloProvider, 
@@ -11,8 +7,11 @@ import {
   createHttpLink 
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import 'semantic-ui-css/semantic.min.css';
 
-
+import { AuthProvider } from './context/authContext';
+import App from './App';
+import './App.css';
 
 const httpLink = createHttpLink({
   uri: process.env.NODE_ENV !== 'production'
@@ -41,10 +40,12 @@ const client = new ApolloClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ApolloProvider client={client} >
-    {/* Remove strict mode cause of Semantic UI errors (fixed in v3) */}
-    {/* <React.StrictMode> */}
-      <App />
-    {/* </React.StrictMode> */}
-  </ApolloProvider>
+  <AuthProvider>
+    <ApolloProvider client={client} >
+      {/* Remove strict mode cause of Semantic UI errors (fixed in v3) */}
+      {/* <React.StrictMode> */}
+        <App />
+      {/* </React.StrictMode> */}
+    </ApolloProvider>
+  </AuthProvider>
 );
