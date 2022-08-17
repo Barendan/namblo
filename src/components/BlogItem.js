@@ -56,7 +56,7 @@ const BlogItem = () => {
         <div className="blog-details">
             {isLoading && <div>Loading...</div>}
 
-            { editActive ? (
+            { editActive && user ? (
                 <div>
                     <p className="main-header">Edit your post</p>
                     <div className="form-container">

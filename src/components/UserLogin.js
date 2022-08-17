@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Container, Button, Form, Input, Message, Modal } from 'semantic-ui-react';
+import { Button, Form, Input, Message, Modal } from 'semantic-ui-react';
 import { LOGIN_USER } from '../graphql/usersResolver';
 import { AuthContext } from '../context/authContext';
 import { useForm } from '../utilities/hooks';
@@ -43,7 +43,7 @@ const UserLogin = ({ show, onClose }) => {
             onClose={onClose}
         >
             <Modal.Header>Login to your account</Modal.Header>
-            
+
             <Modal.Content>
                 <Form>
                     <Form.Field
@@ -66,18 +66,16 @@ const UserLogin = ({ show, onClose }) => {
                             </Message>
                         )
                     })}
-
-
                 </Form>
             </Modal.Content>
 
             <Modal.Actions>
-                    <Button negative onClick={closeErrors}>
-                        Back
-                    </Button>
-                    <Button positive onClick={onSubmit}>
-                        Login
-                    </Button>
+                <Button negative onClick={closeErrors}>
+                    Back
+                </Button>
+                <Button positive onClick={onSubmit}>
+                    Login
+                </Button>
             </Modal.Actions>
 
         </Modal>
