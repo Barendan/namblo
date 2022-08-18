@@ -1,0 +1,99 @@
+@font-face {
+  font-family: KGHappy;
+  src: url("./data/hinted-KGHAPPY.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: KGHappySolid;
+  src: url("./data/hinted-KGHAPPYSolid.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+#root {
+  height: 100%;
+  background-image: url('./data/phobackground.jpg');
+  background-size: 100%;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.App {
+  /* height: 100%; */
+  /* width: 100%; */
+}
+
+.main-header {
+  font-size: 70px;
+  font-family: KGHappy;
+  line-height: 80px;
+  margin-bottom: 30px;
+  /* background-color: 'white'; */
+  /* width: auto; */
+}
+
+.card-header {
+  font-size: 34px !important;
+  font-family: KGHappy !important;
+  font-weight: 300 !important;
+  /* line-height: 40px; */
+}
+
+.blog-list {
+  width: 50%;
+  padding: 30px;
+  font-family: KGHappySolid;
+  margin-bottom: 50px;
+}
+
+.form-container {
+  background-color: white;
+  width: 50%;
+  /* height: 30%; */
+  padding: 30px;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  font-family: KGHappySolid;
+}
+
+.card-content { 
+  padding: 20px !important;
+}
+
+.card-body { 
+  /* padding: 10px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ui.container {
+  background-color: white;
+  max-width: 800px !important;
+  padding: 26px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 26px;
+}
+
+textarea {
+  min-height: 300px !important;
+  width: 100% !important;
+}
+
+.container textarea {
+  border: 0 !important;
+}
+
+.container textarea:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px !important;
+}
+
+.container textarea {
+  font-family: KGHappySolid;
+  color: #494949;
+  font-weight: 100 !important;
+  letter-spacing: 0.5px;
+  line-height: 20px;
+}
