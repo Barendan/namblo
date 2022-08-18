@@ -1,25 +1,32 @@
 {
   "files": {
-    "main.css": "/namblo-client/static/css/main.7a2e42da.chunk.css",
-    "main.js": "/namblo-client/static/js/main.71cf8423.chunk.js",
-    "main.js.map": "/namblo-client/static/js/main.71cf8423.chunk.js.map",
-    "runtime-main.js": "/namblo-client/static/js/runtime-main.e2e9126b.js",
-    "runtime-main.js.map": "/namblo-client/static/js/runtime-main.e2e9126b.js.map",
-    "static/css/2.95253eb4.chunk.css": "/namblo-client/static/css/2.95253eb4.chunk.css",
-    "static/js/2.f678d323.chunk.js": "/namblo-client/static/js/2.f678d323.chunk.js",
-    "static/js/2.f678d323.chunk.js.map": "/namblo-client/static/js/2.f678d323.chunk.js.map",
+    "main.css": "/namblo-client/static/css/main.2e556ee9.css",
+    "main.js": "/namblo-client/static/js/main.ad030483.js",
+    "static/media/phobackground.jpg": "/namblo-client/static/media/phobackground.2a44b6f75abb77ac6a4c.jpg",
+    "static/media/brand-icons.svg": "/namblo-client/static/media/brand-icons.6729d29753e000c17489.svg",
+    "static/media/icons.svg": "/namblo-client/static/media/icons.62d9dae4e0040e81c980.svg",
+    "static/media/hinted-KGHAPPY.woff2": "/namblo-client/static/media/hinted-KGHAPPY.a5296c92f40ed2b53e8e.woff2",
+    "static/media/outline-icons.svg": "/namblo-client/static/media/outline-icons.9c4845b4b41ef40a22fa.svg",
+    "static/media/icons.eot": "/namblo-client/static/media/icons.a01e3f2d6c83dc3aee17.eot",
+    "static/media/icons.ttf": "/namblo-client/static/media/icons.c656b8caa454ed19b9a2.ttf",
+    "static/media/brand-icons.eot": "/namblo-client/static/media/brand-icons.d68fa3e67dbb653a13ce.eot",
+    "static/media/brand-icons.ttf": "/namblo-client/static/media/brand-icons.65a2fb6d9aaa164b41a0.ttf",
+    "static/media/hinted-KGHAPPYSolid.woff2": "/namblo-client/static/media/hinted-KGHAPPYSolid.d2c545502902b2e6c38d.woff2",
+    "static/media/brand-icons.woff": "/namblo-client/static/media/brand-icons.cac87dc00c87a5d74711.woff",
+    "static/media/brand-icons.woff2": "/namblo-client/static/media/brand-icons.278156e41e0ad908cf7f.woff2",
+    "static/media/icons.woff": "/namblo-client/static/media/icons.425399f81e4ce7cbd967.woff",
+    "static/media/icons.woff2": "/namblo-client/static/media/icons.38c6d8bab26db77d8c80.woff2",
+    "static/media/outline-icons.eot": "/namblo-client/static/media/outline-icons.752905fa5edf21fc52a1.eot",
+    "static/media/outline-icons.ttf": "/namblo-client/static/media/outline-icons.5367103510b27b784827.ttf",
+    "static/media/flags.png": "/namblo-client/static/media/flags.99f63ae7a743f21ab308.png",
+    "static/media/outline-icons.woff": "/namblo-client/static/media/outline-icons.ddae9b1ba9b0b42f5880.woff",
+    "static/media/outline-icons.woff2": "/namblo-client/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/namblo-client/index.html",
-    "static/css/2.95253eb4.chunk.css.map": "/namblo-client/static/css/2.95253eb4.chunk.css.map",
-    "static/css/main.7a2e42da.chunk.css.map": "/namblo-client/static/css/main.7a2e42da.chunk.css.map",
-    "static/js/2.f678d323.chunk.js.LICENSE.txt": "/namblo-client/static/js/2.f678d323.chunk.js.LICENSE.txt",
-    "static/media/semantic.min.css": "/namblo-client/static/media/outline-icons.ddae9b1b.woff",
-    "static/media/App.css": "/namblo-client/static/media/phobackground.2a44b6f7.jpg"
+    "main.2e556ee9.css.map": "/namblo-client/static/css/main.2e556ee9.css.map",
+    "main.ad030483.js.map": "/namblo-client/static/js/main.ad030483.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.e2e9126b.js",
-    "static/css/2.95253eb4.chunk.css",
-    "static/js/2.f678d323.chunk.js",
-    "static/css/main.7a2e42da.chunk.css",
-    "static/js/main.71cf8423.chunk.js"
+    "static/css/main.2e556ee9.css",
+    "static/js/main.ad030483.js"
   ]
 }
