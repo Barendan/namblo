@@ -14,13 +14,7 @@ const BlogList = ({ blogs }) => {
     blogCopy.sort((a, b) => Number(a.createdAt) - Number(b.createdAt))
   : blogCopy.sort((a, b) => Number(b.createdAt) - Number(a.createdAt))
 
-
-  if (!blogs) return (
-    <div>still loading...</div>
-  )
-
   if (blogs) return (
-    <div className="blog-list">
       <Card.Group>
         { sortedPosts.map(blog => (
 
@@ -38,7 +32,6 @@ const BlogList = ({ blogs }) => {
 
         ))}
       </Card.Group>
-    </div>
 )};
 
 export default BlogList;

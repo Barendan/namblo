@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <Container fluid className="Home">
-      <div className="main-header"> Nifty Shifty Blog!</div>
+      <div className="main-header"> Chemically Induced Dream </div>
 
       { loading && 
         <Dimmer inverted active>
