@@ -13,17 +13,17 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
 
-        <div className="App">
+        {/* <div className="App"> */}
           {/* <Navbar/> */}
-          <div className="content">
+          {/* <div className="content"> */}
             <Routes>
               <Route exact path="/" element={ <Home/> } />
               <Route path="/newblog" element={ <BlogCreate/> }/>
               <Route path="/blogs/:id" element={ <BlogItem/> } />
               {/* <Route path="*" element={} /> */}
             </Routes>
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
         
       </Router>
     </QueryClientProvider>
