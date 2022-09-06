@@ -63,6 +63,7 @@ const Home = () => {
         <Button
           color="green"
           size="huge"
+          style={{ marginTop: 50 }}
           onClick={() => setShowLogin(true)}
         > Login </Button>
       )}
