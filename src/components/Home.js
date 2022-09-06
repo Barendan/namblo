@@ -70,7 +70,6 @@ const Home = () => {
 
       <UserLogin show={showLogin} onClose={() => setShowLogin(false)} />
     </Container>
-
   )
 }
 

@@ -35,28 +35,41 @@
 }
 
 .ui.cards {
-  /* max-width: 90%; */
   margin: 0 auto;
   padding-left: 5px;
+}
+
+.ui.fluid.card {
+  background: rgb(255 255 255 / 65%);
 }
 
 @media only screen and (min-width: 768px) {
   .ui.cards {
     max-width: 80%;
   }
-
 }
 
 @media only screen and (min-width: 1025px) {
   .ui.cards {
     max-width: 70%;
   }
+}
+/* 
+.item-container {
+  margin-bottom: 20px;
+} */
 
+.ui.huge.header.item-header {
+  background-color: rgb(203 148 161);
+  width: fit-content;
+  padding: 5px 20px 10px 20px;
+  
 }
 
-.ui.fluid.card {
-  background: rgb(255 255 255 / 65%);
+.item-body {
+  padding: 20px;
 }
+
 
 /* .card-header {
   font-size: 34px !important;
@@ -79,7 +92,6 @@
 }
 
 .card-body { 
-  /* padding: 10px; */
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -88,8 +100,8 @@
   /* background-color: white; */
   /* max-width: 800px !important; */
   /* padding: 26px; */
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   /* margin-bottom: 26px; */
 }
 
@@ -99,7 +111,9 @@ textarea {
 }
 
 .container textarea {
-  border: 0 !important;
+  background-color: rgb(251 219 212);
+  /* border: 0 !important; */
+  margin-bottom: 10px;
 }
 
 .container textarea:focus-visible {
@@ -107,9 +121,9 @@ textarea {
 }
 
 .container textarea {
-  font-family: KGHappySolid;
+  /* font-family: KGHappySolid; */
   color: #494949;
   font-weight: 100 !important;
-  letter-spacing: 0.5px;
-  line-height: 20px;
+  /* letter-spacing: 0.5px; */
+  /* line-height: 20px; */
 }

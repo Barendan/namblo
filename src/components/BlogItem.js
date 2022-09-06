@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { Container, TextArea, Confirm, Button, Card, Form } from 'semantic-ui-react';
+import { Container, TextArea, Confirm, Button, Header, Form } from 'semantic-ui-react';
 
 import { GET_BLOG_POST, REMOVE_BLOG, UPDATE_BLOG } from '../graphql/postsResolver';
 import { AuthContext } from '../context/authContext';
@@ -11,7 +11,7 @@ const BlogItem = () => {
     const { id } = useParams();
     const { isLoading, data: blog } =  useQuery(GET_BLOG_POST, { variables: { id: id } });
     const [blogRemove] = useMutation(REMOVE_BLOG,{ refetchQueries: ['GetBlogPosts'] });
-    const [blogUpdate, { data, loading, error }] = useMutation(UPDATE_BLOG);
+    const [blogUpdate, { data, loading }] = useMutation(UPDATE_BLOG);
     
     const [editActive, setEditActive] = useState(false);
     const [open, setOpen] = useState(false);
@@ -19,7 +19,6 @@ const BlogItem = () => {
     const [body, setBody] = useState('');
     const [status, setStatus] = useState(false);
     const { user } = useContext(AuthContext);
-
 
     const navigate = useNavigate();
     
@@ -53,7 +52,7 @@ const BlogItem = () => {
     }
  
     return (
-        <div className="blog-details">
+        <Container fluid className="Home">
             {isLoading && <div>Loading...</div>}
 
             { editActive && user ? (
@@ -106,17 +105,17 @@ const BlogItem = () => {
                     </div>
                 </div>
             ) :
-            blog?.getPost && (
-                <div>
-                    <div className="main-header">Nifty Shifty Blog!</div>
+            blog?.getPost && ( <>
 
-                    <Container text className="post-container">
-                        <h1 className="card-header">{blog.getPost.title}</h1>
-                        <i>{blog.getPost.createdAt}</i>
-                        
-                        <TextArea className="post-body" value={blog.getPost.body} />
-                    </Container>
-
+                <Container className="item-container">
+                    <Header size="huge" className="item-header">
+                        {blog.getPost.title}
+                        <Header.Subheader>
+                            <i>{blog.getPost.createdAt}</i>
+                        </Header.Subheader>
+                    </Header>
+                    <TextArea className="item-body" value={blog.getPost.body}/>
+                    
                     { user ? (
                         <div>
                             <Button size="huge" onClick={() => navigate('/')}>
@@ -134,20 +133,20 @@ const BlogItem = () => {
                             Back
                         </Button>
                     )}
+                </Container>
 
-                    <Confirm
-                        open={open}
-                        content='Are you sure you want to delete this post?'
-                        cancelButton='Nevermind'
-                        confirmButton="Delete it"
-                        onCancel={() => setOpen(false)}
-                        onConfirm={handleDelete}
-                    />
 
-                </div>
-            )}
+                <Confirm
+                    open={open}
+                    content='Are you sure you want to delete this post?'
+                    cancelButton='Nevermind'
+                    confirmButton="Delete it"
+                    onCancel={() => setOpen(false)}
+                    onConfirm={handleDelete}
+                />
 
-        </div>
+            </> )}
+        </Container>
     );
 }
  
