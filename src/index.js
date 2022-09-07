@@ -13,8 +13,8 @@ import { AuthProvider } from './context/authContext';
 import App from './App';
 import './App.css';
 
-// const NODE_ENV = 'production';
-const NODE_ENV = '';
+const NODE_ENV = 'production';
+// const NODE_ENV = '';
 
 const httpLink = createHttpLink({
   uri: NODE_ENV !== 'production'
