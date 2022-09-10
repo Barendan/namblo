@@ -42,32 +42,39 @@ const Home = () => {
         </Message>
       }
 
-      { blogs && <BlogList blogs={blogs} /> }
+      { blogs && 
+        <div className="main-body">
+          <BlogList blogs={blogs} /> 
 
-      { blogs && user ? (
-        <div>
-          <hr/><br/>
-          <Button
-            color="red"
-            size="huge"
-            onClick={onLogout}
-          > Logout </Button>
-          <Button 
-            primary
-            // color="orange"
-            size="huge" 
-            onClick={() => navigate('/newblog') }
-          >Post New Blog </Button>
+          <hr style={{marginTop: 30}} />
+          
+          { blogs && user ? (
+            <div>
+              <hr/><br/>
+              <Button
+                color="red"
+                size="huge"
+                onClick={onLogout}
+              > Logout </Button>
+              <Button 
+                primary
+                // color="orange"
+                size="huge" 
+                onClick={() => navigate('/newblog') }
+              >Post New Blog </Button>
+            </div>
+          ) : (
+            <Button
+              color="green"
+              size="huge"
+              style={{ marginTop: 20 }}
+              onClick={() => setShowLogin(true)}
+            > Login </Button>
+          )}
+
         </div>
-      ) : (
-        <Button
-          color="green"
-          size="huge"
-          style={{ marginTop: 50 }}
-          onClick={() => setShowLogin(true)}
-        > Login </Button>
-      )}
-
+      }
+      
       <UserLogin show={showLogin} onClose={() => setShowLogin(false)} />
     </Container>
   )

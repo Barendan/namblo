@@ -34,23 +34,27 @@
   margin-bottom: 5vmin;
 }
 
-.ui.cards {
+.main-body {
   margin: 0 auto;
   padding-left: 5px;
+
 }
+
+/* .ui.cards {
+} */
 
 .ui.fluid.card {
   background: rgb(255 255 255 / 65%);
 }
 
 @media only screen and (min-width: 768px) {
-  .ui.cards {
+  .main-body {
     max-width: 80%;
   }
 }
 
 @media only screen and (min-width: 1025px) {
-  .ui.cards {
+  .main-body {
     max-width: 70%;
   }
 }
