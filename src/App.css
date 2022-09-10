@@ -37,14 +37,6 @@
 .main-body {
   margin: 0 auto;
   padding-left: 5px;
-
-}
-
-/* .ui.cards {
-} */
-
-.ui.fluid.card {
-  background: rgb(255 255 255 / 65%);
 }
 
 @media only screen and (min-width: 768px) {
@@ -58,10 +50,10 @@
     max-width: 70%;
   }
 }
-/* 
-.item-container {
-  margin-bottom: 20px;
-} */
+
+.ui.fluid.card {
+  background: rgb(255 255 255 / 65%);
+}
 
 .ui.huge.header.item-header {
   background-color: rgb(203 148 161);
@@ -73,7 +65,6 @@
 .item-body {
   padding: 20px;
 }
-
 
 /* .card-header {
   font-size: 34px !important;

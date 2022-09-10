@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { Container, TextArea, Confirm, Button, Header, Form } from 'semantic-ui-react';
+import { Container, TextArea, Confirm, Button, Header, Form, Dimmer, Loader, Message } from 'semantic-ui-react';
 
 import { GET_BLOG_POST, REMOVE_BLOG, UPDATE_BLOG } from '../graphql/postsResolver';
 import { AuthContext } from '../context/authContext';
@@ -9,9 +9,9 @@ import { AuthContext } from '../context/authContext';
 
 const BlogItem = () => {
     const { id } = useParams();
-    const { isLoading, data: blog } =  useQuery(GET_BLOG_POST, { variables: { id: id } });
+    const { loading, data: blog, error } =  useQuery(GET_BLOG_POST, { variables: { id: id } });
     const [blogRemove] = useMutation(REMOVE_BLOG,{ refetchQueries: ['GetBlogPosts'] });
-    const [blogUpdate, { data, loading }] = useMutation(UPDATE_BLOG);
+    const [blogUpdate, { data }] = useMutation(UPDATE_BLOG);
     
     const [editActive, setEditActive] = useState(false);
     const [open, setOpen] = useState(false);
@@ -53,7 +53,21 @@ const BlogItem = () => {
  
     return (
         <Container fluid className="Home">
-            {isLoading && <div>Loading...</div>}
+
+            { loading && 
+                <Dimmer inverted active>
+                <Loader size="massive" inverted>Loading</Loader>
+                </Dimmer>
+            }
+
+            { error && 
+                <Message negative>
+                <Message.Header>
+                    Sorry, there seems to be an error.
+                </Message.Header>
+                <p>Error : {error.message}.</p>
+                </Message>
+            }
 
             { editActive && user ? (
                 <div>
