@@ -44,7 +44,7 @@ const Home = () => {
 
       { blogs && 
         <div className="main-body">
-          <BlogList blogs={blogs} /> 
+          <BlogList blogs={ blogs } user={ user } /> 
 
           <hr style={{marginTop: 30}} />
           

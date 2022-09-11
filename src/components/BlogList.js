@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 
-const BlogList = ({ blogs }) => {
+const BlogList = ({ blogs, user }) => {
   const [ sort, setSort ] = useState(false)
   const navigate = useNavigate();
   
@@ -16,19 +16,35 @@ const BlogList = ({ blogs }) => {
 
   if (blogs) return (
     <Card.Group>
-      { sortedPosts.map( blog => (
-        <Card
-          fluid
-          key={blog._id}
-          onClick={() => navigate(`/blogs/${blog._id}`) }
-        >
-          <Card.Content className="card-content">
-            <Card.Header className="card-header">{blog.title}</Card.Header>
-            <Card.Meta>{new Date(blog.createdAt).toLocaleString()}</Card.Meta>
-            <Card.Description className="card-body">`{blog.body.slice(0,200)}...`</Card.Description>
-          </Card.Content>
-        </Card>
-      ))}
+
+      { sortedPosts.map( blog => {
+        return user ? (
+          <Card
+            fluid
+            key={blog._id}
+            onClick={() => navigate(`/blogs/${blog._id}`) }
+          >
+            <Card.Content className="card-content">
+              <Card.Header className="card-header">{blog.title}</Card.Header>
+              <Card.Meta>{new Date(blog.createdAt).toLocaleString()}</Card.Meta>
+              <Card.Description className="card-body">`{blog.body.slice(0,200)}...`</Card.Description>
+            </Card.Content>
+          </Card>
+        ) : blog.status && (
+          <Card
+            fluid
+            key={blog._id}
+            onClick={() => navigate(`/blogs/${blog._id}`) }
+          >
+            <Card.Content className="card-content">
+              <Card.Header className="card-header">{blog.title}</Card.Header>
+              <Card.Meta>{new Date(blog.createdAt).toLocaleString()}</Card.Meta>
+              <Card.Description className="card-body">`{blog.body.slice(0,200)}...`</Card.Description>
+            </Card.Content>
+          </Card>
+        )
+      })}
+      
     </Card.Group>
   )
 };
